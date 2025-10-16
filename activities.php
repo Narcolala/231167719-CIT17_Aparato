@@ -1,153 +1,314 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PHP Exercises</title>
+    <title>PHP Activities with User Input</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #fff);
+            margin: 0;
+            padding: 0;
             color: #333;
-            margin: 40px auto;
-            max-width: 800px;
-            padding: 0 20px;
-            line-height: 1.6;
+        }
+        h2 {
+            text-align: center;
+            color: #1565c0;
+            margin-top: 30px;
+            text-shadow: 1px 1px 2px #bbb;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 25px 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         h3 {
-            background-color: #4CAF50;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        form {
+            margin-bottom: 15px;
+        }
+        input[type=text], input[type=number] {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        input[type=submit] {
+            background: #1976d2;
             color: white;
+            border: none;
             padding: 10px 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
-        p, .output {
-            background: white;
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-size: 1.1em;
+        input[type=submit]:hover {
+            background: #0d47a1;
         }
-        /* Optional: highlight some key parts */
-        .highlight {
-            color: #4CAF50;
-            font-weight: bold;
+        .output {
+            background: #f1f8e9;
+            border-left: 5px solid #8bc34a;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        hr {
+            border: none;
+            border-bottom: 1px solid #ddd;
+            margin: 25px 0;
         }
     </style>
 </head>
 <body>
-    <?php
-    
-    $name = "Ryan";
-    $age = 20;
-    $color = "Black";
-    echo "<h3>1. Introduce Yourself</h3>";
-    echo "<p class='output'>Hi, my name is <span class='highlight'>$name</span>, I am currently <span class='highlight'>$age</span> years old, and my favorite color is <span class='highlight'>$color</span>.</p>";
-    
-    
-    $a = 14;
-    $b = 7;
-    echo "<h3>2. Simple Math</h3>";
-    echo "<p class='output'>";
-    echo "Sum: <span class='highlight'>" . ($a + $b) . "</span><br>";
-    echo "Difference: <span class='highlight'>" . ($a - $b) . "</span><br>";
-    echo "Product: <span class='highlight'>" . ($a * $b) . "</span><br>";
-    echo "Quotient: <span class='highlight'>" . ($a / $b) . "</span><br>";
-    echo "</p>";
 
-    
-    $length = 18;
-    $width = 9;
-    $area = $length * $width;
-    $perimeter = 2 * ($length + $width);
-    echo "<h3>3. Area and Perimeter of a Rectangle</h3>";
-    echo "<p class='output'>Area: <span class='highlight'>$area</span><br>";
-    echo "Perimeter: <span class='highlight'>$perimeter</span></p>";
+    <h2>🌟 PHP Activities with User Input 🌟</h2>
 
-   
-    $celsius = 32;
-    $fahrenheit = ($celsius * 9/5) + 32;
-    echo "<h3>4. Temperature Converter</h3>";
-    echo "<p class='output'>$celsius °C = <span class='highlight'>$fahrenheit</span> °F</p>";
+    <div class="container">
 
-    
-    $x = 10;
-    $y = 20;
-    $temp = $x;
-    $x = $y;
-    $y = $temp;
-    echo "<h3>5. Swapping Variables</h3>";
-    echo "<p class='output'>After swapping: x = <span class='highlight'>$x</span>, y = <span class='highlight'>$y</span></p>";
+        
+        <h3>1. Introduce Yourself</h3>
+        <form method="POST">
+            Name: <input type="text" name="name"><br>
+            Age: <input type="number" name="age"><br>
+            Favorite Color: <input type="text" name="color"><br>
+            <input type="submit" name="intro" value="Submit">
+        </form>
+        <?php
+        if (isset($_POST["intro"])) {
+            $name = $_POST["name"];
+            $age = $_POST["age"];
+            $color = $_POST["color"];
+            echo "<div class='output'>Hi, I'm <b>$name</b>, I am <b>$age</b> years old, and my favorite color is <b>$color</b>.</div>";
+        }
+        ?>
+        <hr>
 
-    
-    $basic_salary = 20000;
-    $allowance = 5000;
-    $deduction = 3000;
-    $net_salary = $basic_salary + $allowance - $deduction;
-    echo "<h3>6. Salary Calculator</h3>";
-    echo "<p class='output'>Net Salary: <span class='highlight'>₱$net_salary</span></p>";
+        
+        <h3>2. Simple Math</h3>
+        <form method="POST">
+            Number A: <input type="number" name="a"><br>
+            Number B: <input type="number" name="b"><br>
+            <input type="submit" name="math" value="Calculate">
+        </form>
+        <?php
+        if (isset($_POST["math"])) {
+            $a = $_POST["a"];
+            $b = $_POST["b"];
+            echo "<div class='output'>
+                Sum: " . ($a + $b) . "<br>
+                Difference: " . ($a - $b) . "<br>
+                Product: " . ($a * $b) . "<br>
+                Quotient: " . ($a / $b) . "
+            </div>";
+        }
+        ?>
+        <hr>
 
-    
-    $weight = 74;
-    $height = 1.75;
-    $bmi = $weight / ($height * $height);
-    echo "<h3>7. BMI Calculator</h3>";
-    echo "<p class='output'>BMI: <span class='highlight'>" . round($bmi, 2) . "</span></p>";
+        
+        <h3>3. Area and Perimeter of a Rectangle</h3>
+        <form method="POST">
+            Length: <input type="number" name="length"><br>
+            Width: <input type="number" name="width"><br>
+            <input type="submit" name="rectangle" value="Compute">
+        </form>
+        <?php
+        if (isset($_POST["rectangle"])) {
+            $length = $_POST["length"];
+            $width = $_POST["width"];
+            $area = $length * $width;
+            $perimeter = 2 * ($length + $width);
+            echo "<div class='output'>
+                Area: $area<br>
+                Perimeter: $perimeter
+            </div>";
+        }
+        ?>
+        <hr>
 
-    
-    $sentence = "Learning PHP is fun and easy!";
-    echo "<h3>8. String Manipulation</h3>";
-    echo "<p class='output'>Sentence: $sentence<br>";
-    echo "Number of characters: <span class='highlight'>" . strlen($sentence) . "</span><br>";
-    echo "Number of words: <span class='highlight'>" . str_word_count($sentence) . "</span><br>";
-    echo "Uppercase: <span class='highlight'>" . strtoupper($sentence) . "</span><br>";
-    echo "Lowercase: <span class='highlight'>" . strtolower($sentence) . "</span></p>";
+        
+        <h3>4. Temperature Converter</h3>
+        <form method="POST">
+            Celsius: <input type="number" name="celsius"><br>
+            <input type="submit" name="temp" value="Convert">
+        </form>
+        <?php
+        if (isset($_POST["temp"])) {
+            $celsius = $_POST["celsius"];
+            $fahrenheit = ($celsius * 9/5) + 32;
+            echo "<div class='output'>$celsius °C = $fahrenheit °F</div>";
+        }
+        ?>
+        <hr>
 
-    
-    $balance = 10000;
-    $deposit = 2000;
-    $withdraw = 1500;
-    $balance = $balance + $deposit - $withdraw;
-    echo "<h3>9. Bank Account Simulation</h3>";
-    echo "<p class='output'>Final Balance: <span class='highlight'>₱$balance</span></p>";
+        
+        <h3>5. Swapping Variables</h3>
+        <form method="POST">
+            Value of X: <input type="number" name="x"><br>
+            Value of Y: <input type="number" name="y"><br>
+            <input type="submit" name="swap" value="Swap">
+        </form>
+        <?php
+        if (isset($_POST["swap"])) {
+            $x = $_POST["x"];
+            $y = $_POST["y"];
+            $temp = $x;
+            $x = $y;
+            $y = $temp;
+            echo "<div class='output'>After swapping: x = $x, y = $y</div>";
+        }
+        ?>
+        <hr>
 
-    
-    $math = 85;
-    $english = 90;
-    $science = 88;
-    $average = ($math + $english + $science) / 3;
-    if ($average >= 90) {
-        $grade = "A";
-    } elseif ($average >= 80) {
-        $grade = "B";
-    } elseif ($average >= 70) {
-        $grade = "C";
-    } elseif ($average >= 60) {
-        $grade = "D";
-    } else {
-        $grade = "F";
-    }
-    echo "<h3>10. Simple Grading System</h3>";
-    echo "<p class='output'>Average: <span class='highlight'>" . round($average, 2) . "</span><br>";
-    echo "Grade: <span class='highlight'>$grade</span></p>";
+        
+        <h3>6. Salary Calculator</h3>
+        <form method="POST">
+            Basic Salary: <input type="number" name="basic"><br>
+            Allowance: <input type="number" name="allowance"><br>
+            Deduction: <input type="number" name="deduction"><br>
+            <input type="submit" name="salary" value="Compute Salary">
+        </form>
+        <?php
+        if (isset($_POST["salary"])) {
+            $basic = $_POST["basic"];
+            $allowance = $_POST["allowance"];
+            $deduction = $_POST["deduction"];
+            $net = $basic + $allowance - $deduction;
+            echo "<div class='output'>Net Salary: ₱$net</div>";
+        }
+        ?>
+        <hr>
 
-    
-    $php_amount = 10000;
-    $usd_rate = 0.017;
-    $eur_rate = 0.016;
-    $jpy_rate = 2.65;
-    echo "<h3>11. Currency Converter</h3>";
-    echo "<p class='output'>₱$php_amount in USD: <span class='highlight'>$" . round($php_amount * $usd_rate, 2) . "</span><br>";
-    echo "₱$php_amount in EUR: <span class='highlight'>€" . round($php_amount * $eur_rate, 2) . "</span><br>";
-    echo "₱$php_amount in JPY: <span class='highlight'>¥" . round($php_amount * $jpy_rate, 2) . "</span></p>";
+        
+        <h3>7. BMI Calculator</h3>
+        <form method="POST">
+            Weight (kg): <input type="number" step="0.01" name="weight"><br>
+            Height (m): <input type="number" step="0.01" name="height"><br>
+            <input type="submit" name="bmi" value="Calculate BMI">
+        </form>
+        <?php
+        if (isset($_POST["bmi"])) {
+            $weight = $_POST["weight"];
+            $height = $_POST["height"];
+            $bmi = $weight / ($height * $height);
+            echo "<div class='output'>BMI: " . round($bmi, 2) . "</div>";
+        }
+        ?>
+        <hr>
 
-    
-    $distance = 200;
-    $fuel_consumption = 10;
-    $fuel_price = 70;
-    $fuel_needed = $distance / $fuel_consumption;
-    $travel_cost = $fuel_needed * $fuel_price;
-    echo "<h3>12. Travel Cost Estimator</h3>";
-    echo "<p class='output'>Estimated Travel Cost: <span class='highlight'>₱" . round($travel_cost, 2) . "</span></p>";
-    ?>
+        
+        <h3>8. String Manipulation</h3>
+        <form method="POST">
+            Enter a sentence: <input type="text" name="sentence"><br>
+            <input type="submit" name="string" value="Analyze">
+        </form>
+        <?php
+        if (isset($_POST["string"])) {
+            $sentence = $_POST["sentence"];
+            echo "<div class='output'>
+                Sentence: $sentence<br>
+                Number of characters: " . strlen($sentence) . "<br>
+                Number of words: " . str_word_count($sentence) . "<br>
+                Uppercase: " . strtoupper($sentence) . "<br>
+                Lowercase: " . strtolower($sentence) . "
+            </div>";
+        }
+        ?>
+        <hr>
+
+        
+        <h3>9. Bank Account Simulation</h3>
+        <form method="POST">
+            Current Balance: <input type="number" name="balance"><br>
+            Deposit: <input type="number" name="deposit"><br>
+            Withdraw: <input type="number" name="withdraw"><br>
+            <input type="submit" name="bank" value="Update Balance">
+        </form>
+        <?php
+        if (isset($_POST["bank"])) {
+            $balance = $_POST["balance"];
+            $deposit = $_POST["deposit"];
+            $withdraw = $_POST["withdraw"];
+            $balance = $balance + $deposit - $withdraw;
+            echo "<div class='output'>Final Balance: ₱$balance</div>";
+        }
+        ?>
+        <hr>
+
+        
+        <h3>10. Simple Grading System</h3>
+        <form method="POST">
+            Math: <input type="number" name="math"><br>
+            English: <input type="number" name="english"><br>
+            Science: <input type="number" name="science"><br>
+            <input type="submit" name="grade" value="Compute Grade">
+        </form>
+        <?php
+        if (isset($_POST["grade"])) {
+            $math = $_POST["math"];
+            $english = $_POST["english"];
+            $science = $_POST["science"];
+            $average = ($math + $english + $science) / 3;
+            if ($average >= 90) $grade = "A";
+            elseif ($average >= 80) $grade = "B";
+            elseif ($average >= 70) $grade = "C";
+            elseif ($average >= 60) $grade = "D";
+            else $grade = "F";
+            echo "<div class='output'>
+                Average: " . round($average, 2) . "<br>
+                Grade: $grade
+            </div>";
+        }
+        ?>
+        <hr>
+
+        
+        <h3>11. Currency Converter</h3>
+        <form method="POST">
+            PHP Amount: <input type="number" name="php_amount"><br>
+            <input type="submit" name="currency" value="Convert">
+        </form>
+        <?php
+        if (isset($_POST["currency"])) {
+            $php_amount = $_POST["php_amount"];
+            $usd_rate = 0.017;
+            $eur_rate = 0.016;
+            $jpy_rate = 2.65;
+            echo "<div class='output'>
+                ₱$php_amount in USD: $" . round($php_amount * $usd_rate, 2) . "<br>
+                ₱$php_amount in EUR: €" . round($php_amount * $eur_rate, 2) . "<br>
+                ₱$php_amount in JPY: ¥" . round($php_amount * $jpy_rate, 2) . "
+            </div>";
+        }
+        ?>
+        <hr>
+
+        
+        <h3>12. Travel Cost Estimator</h3>
+        <form method="POST">
+            Distance (km): <input type="number" name="distance"><br>
+            Fuel Consumption (km per liter): <input type="number" name="fuel_consumption"><br>
+            Fuel Price per Liter: <input type="number" name="fuel_price"><br>
+            <input type="submit" name="travel" value="Estimate Cost">
+        </form>
+        <?php
+        if (isset($_POST["travel"])) {
+            $distance = $_POST["distance"];
+            $fuel_consumption = $_POST["fuel_consumption"];
+            $fuel_price = $_POST["fuel_price"];
+            $fuel_needed = $distance / $fuel_consumption;
+            $travel_cost = $fuel_needed * $fuel_price;
+            echo "<div class='output'>Estimated Travel Cost: ₱" . round($travel_cost, 2) . "</div>";
+        }
+        ?>
+
+    </div>
 </body>
 </html>
